@@ -16,11 +16,14 @@ $(function() {
     });
 });
 
-async function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 13,
-      center: { lat: -23.555, lng: -46.638 }
-    });
+initMap();
+async function initMap() {	
+	const { Map } = await google.maps.importLibrary("maps");
+	
+	map = new Map(document.getElementById("map"), {
+		center: { lat: -23.555, lng: -46.638 },
+		zoom: 13,
+	});
 }
 
 function readExcelFile(){
