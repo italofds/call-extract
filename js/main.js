@@ -19,6 +19,7 @@ $(function() {
 initMap();
 async function initMap() {	
 	const { Map } = await google.maps.importLibrary("maps");
+	const { Geometry } = await google.maps.importLibrary("geometry");	
 	
 	map = new Map(document.getElementById("map"), {
 		center: { lat: -23.555, lng: -46.638 },
@@ -196,6 +197,7 @@ function setMapPosition(erbCode) {
 }
 
 function printAzimuth(erbCode, isDestiny) {
+	
     if(erbCode) {
         var result = jsonERBs.filter(obj => {
             return obj.CGI === erbCode
@@ -220,7 +222,7 @@ function printAzimuth(erbCode, isDestiny) {
             var path = [];
             path.push(center);
 
-            for (var j = startAngle; j <= endAngle; j += 5) {
+            for (var j = startAngle; j <= endAngle; j += 5) {			
                 var point = google.maps.geometry.spherical.computeOffset(center, RADIUS, j);
                 path.push(point);
             }
